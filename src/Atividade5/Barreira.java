@@ -46,7 +46,7 @@ public class Barreira {
             Logger.getLogger(Barreira.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.count++;
-        System.out.println(message + "|Contador: " + this.count);
+        System.out.println(message + " Contador: " + this.count);
     }
 
     public void init() {
