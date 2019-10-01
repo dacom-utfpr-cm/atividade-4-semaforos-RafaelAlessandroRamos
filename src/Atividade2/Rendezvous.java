@@ -1,0 +1,38 @@
+
+package Atividade2;
+
+import java.util.concurrent.Semaphore;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ *
+ * @author rafael
+ */
+public class Rendezvous {
+    
+    Semaphore semaphore;
+    tThread thread1;
+    tThread thread2;
+    
+    public Rendezvous() {
+        this.semaphore = new Semaphore(1);
+        this.thread1 = new tThread(this,"t1");
+        this.thread2 = new tThread(this,"t2");
+    }
+    
+    public void trecho(String message){
+        try {
+            this.semaphore.acquire();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Rendezvous.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println(message);
+        this.semaphore.release();
+    }
+    
+    public void init(){
+        this.thread1.start();
+        this.thread2.start();
+    }
+}
